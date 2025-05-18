@@ -1,5 +1,6 @@
 import type {
   ColumnFiltersState,
+  PaginationState,
   SortingState,
   VisibilityState,
 } from "@tanstack/solid-table";
@@ -7,11 +8,13 @@ import {
   createSolidTable,
   flexRender,
   getCoreRowModel,
+  getExpandedRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
 } from "@tanstack/solid-table";
-import { createSignal, For } from "solid-js";
+import { createSignal, For, onMount, Show } from "solid-js";
+import { effect } from "solid-js/web";
 import { Button } from "~/components/ui/button";
 import {
   Table,
@@ -45,8 +48,14 @@ export function DataTable() {
   );
   const [rowSelection, setRowSelection] = createSignal({});
 
+  // this should came from url ? page=1&pageSize:10; like this
+  const [pagination, setPagination] = createSignal<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+
   /*
-get data() {
+    get data() {
       return props.data
     },
     get columns() {
@@ -61,11 +70,27 @@ get data() {
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
-
+    getExpandedRowModel: getExpandedRowModel(),
+    onColumnFiltersChange: (updateOrValue) => {
+      console.log({
+        updateOrValue,
+      });
+    },
+    onPaginationChange(updatetorOrValue) {
+      if (typeof updatetorOrValue === "function") {
+        const newPagination = updatetorOrValue(pagination());
+        setPagination(newPagination);
+      } else {
+        // @TODO: NEED TO CHANGE THIS - IF has any problem
+        setPagination({
+          pageIndex: updatetorOrValue?.pageIndex + 1,
+          pageSize: updatetorOrValue?.pageSize,
+        });
+      }
+    },
+    onSortingChange: setSorting,
     state: {
       get sorting() {
         return sorting();
@@ -79,7 +104,26 @@ get data() {
       get rowSelection() {
         return rowSelection();
       },
+      get pagination() {
+        return pagination();
+      },
     },
+    manualPagination: true,
+    manualFiltering: true,
+    manualSorting: true,
+  });
+
+  onMount(() => {
+    console.log("Mounted", table);
+  });
+
+  effect(() => {
+    console.log({
+      pagination: pagination(),
+      state: {
+        ...table.getState().sorting,
+      },
+    });
   });
 
   return (
@@ -131,6 +175,18 @@ get data() {
                       </TableCell>
                     )}
                   </For>
+                  <Show when={row.getIsExpanded()}>
+                    <tr>
+                      <td colSpan={row.getAllCells().length}>
+                        {" "}
+                        {/* @TODO: NEED TO FIX THIS */}
+                        // The number of columns you wish to span for the
+                        expanded data if it is not a row that shares the same
+                        columns as the parent row
+                        {JSON.stringify(row)}
+                      </td>
+                    </tr>
+                  </Show>
                 </TableRow>
               ))
             ) : (

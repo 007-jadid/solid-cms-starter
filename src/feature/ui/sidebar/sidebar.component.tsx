@@ -5,7 +5,6 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuItem,
 } from "~/components/ui/sidebar";
@@ -16,6 +15,7 @@ import {
   SearchIcon,
   Settings,
 } from "../icons";
+import { SidebarHeader } from "./sidebar-header.component";
 
 const items = [
   {
@@ -46,15 +46,11 @@ const items = [
 ];
 
 export function AppSidebar() {
-  console.log("Sidebar");
-
   return (
-    <Sidebar>
+    <Sidebar class="">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel class="h-[40px] font-bold bg-white dark:bg-slate-900 text-lg items-center justify-center">
-            Foodi
-          </SidebarGroupLabel>
+          <SidebarHeader />
           <SidebarGroupContent>
             <SidebarMenu>
               <For each={items}>

@@ -1,7 +1,11 @@
 export { CalendarIcon } from "./calender-icon";
 export { CheckIcon } from "./check-icon";
+export { ChevronDown } from "./chevron-down-icon";
+export { ChevronUpDown } from "./chevron-up-down-icon";
+export { ChevronUp } from "./chevron-up-icon";
 export { UpDown } from "./dropdown.icon";
 export { EllipsisIcon } from "./ellipsis-icon";
+export { EyeOff } from "./eye-off-icon";
 export { HomeIcon } from "./home-icon";
 export { LaptopIcon } from "./laptop-icon";
 export { MailIcon } from "./mail-icon";
@@ -9,3 +13,4 @@ export { MoonIcon } from "./moon-icon";
 export { SearchIcon } from "./search-icon";
 export { Settings } from "./settings-icon";
 export { SunIcon } from "./sun-icon";
+export { X } from "./x-icon";

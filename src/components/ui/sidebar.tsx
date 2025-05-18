@@ -320,7 +320,7 @@ const SidebarTrigger = <T extends ValidComponent = "button">(
 
 const SidebarRail: Component<ComponentProps<"button">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, open } = useSidebar();
 
   return (
     <button

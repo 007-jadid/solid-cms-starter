@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/solid-router";
 import { columns } from "~/feature/context/constants";
-import { DataTableProvider } from "~/feature/context/data-table.provider";
+import { DataTableProvider } from "~/feature/ui/data-table/data-table.provider";
 
 export const Route = createFileRoute("/")({
   component: App,

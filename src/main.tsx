@@ -20,6 +20,7 @@ declare module "@tanstack/solid-router" {
 
 const queryClient = new QueryClient();
 
+// new
 function App() {
   return (
     <>

@@ -37,7 +37,7 @@ const DataTableHeader = (props: {
         <span class="mr-1">{props.title}</span>
 
         <Show when={props.column.getCanSort()}>
-          <Switch fallback={ChevronUpDown}>
+          <Switch fallback={<ChevronUpDown />}>
             <Match when={props?.column?.getIsSorted() === "desc"}>
               <ChevronDown />
             </Match>
@@ -48,12 +48,14 @@ const DataTableHeader = (props: {
         </Show>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent class="">
+      <DropdownMenuContent>
         <Show when={props.column.getCanSort()}>
           <DropdownMenuCheckboxItem
             class="space-x-1 relative pr-8 pl-2 [&>span:first-child]:right-2 [&>span:first-child]:left-auto [&_svg]:text-muted-foreground"
             checked={props.column.getIsSorted() === "asc"}
-            onClick={() => props.column.toggleSorting(false)}
+            on:click={() => {
+              props.column.toggleSorting(false);
+            }}
           >
             <ChevronUp />
             <span class="pl-.5 text-xs">Asc</span>
@@ -61,7 +63,9 @@ const DataTableHeader = (props: {
           <DropdownMenuCheckboxItem
             class="space-x-1  relative pr-8 pl-2 [&>span:first-child]:right-2 [&>span:first-child]:left-auto [&_svg]:text-muted-foreground"
             checked={props.column.getIsSorted() === "desc"}
-            onClick={() => props.column.toggleSorting(true)}
+            onClick={() => {
+              props.column.toggleSorting(true);
+            }}
           >
             <ChevronDown />
             <span class="pl-.5 text-xs">Dsc</span>
@@ -71,7 +75,9 @@ const DataTableHeader = (props: {
         <Show when={props.column.getIsSorted()}>
           <DropdownMenuItem
             class="px-3 py-2 flex items-center "
-            onClick={() => props.column.clearSorting()}
+            onClick={() => {
+              props.column.clearSorting();
+            }}
           >
             <X />
             <span class="pl-.5 text-xs">Reset</span>

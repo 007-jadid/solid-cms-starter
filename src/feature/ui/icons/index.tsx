@@ -1,3 +1,4 @@
+export { ArrowUpDown } from "./arrow-up-down-icon";
 export { CalendarIcon } from "./calender-icon";
 export { CheckIcon } from "./check-icon";
 export { ChevronDown } from "./chevron-down-icon";

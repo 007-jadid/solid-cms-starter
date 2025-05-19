@@ -14,7 +14,6 @@ import {
   getSortedRowModel,
 } from "@tanstack/solid-table";
 import { createSignal, For, onMount, Show } from "solid-js";
-import { effect } from "solid-js/web";
 import { Button } from "~/components/ui/button";
 import {
   Table,
@@ -27,6 +26,7 @@ import {
 import { TextField, TextFieldInput } from "~/components/ui/text-field";
 import { useDataTable } from "~/feature/context/data-table.hook";
 import { ColumnView } from "./column-view.component";
+import { Sort } from "./sort.component";
 
 export type Payment = {
   id: string;
@@ -64,7 +64,7 @@ export function DataTable() {
 */
 
   const table = createSolidTable({
-    data: data ?? [],
+    data: [],
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -111,19 +111,11 @@ export function DataTable() {
     manualPagination: true,
     manualFiltering: true,
     manualSorting: true,
+    pageCount: 10,
   });
 
   onMount(() => {
     console.log("Mounted", table);
-  });
-
-  effect(() => {
-    console.log({
-      pagination: pagination(),
-      state: {
-        ...table.getState().sorting,
-      },
-    });
   });
 
   return (
@@ -135,7 +127,10 @@ export function DataTable() {
         >
           <TextFieldInput placeholder="Filter emails..." class="max-w-sm h-9" />
         </TextField>
-        <ColumnView columns={table.getAllColumns()} />
+        <div class="flex items-center gap-x-1.5">
+          <Sort table={table} />
+          <ColumnView columns={table.getAllColumns()} />
+        </div>
       </div>
       <div class="rounded-md border">
         <Table>

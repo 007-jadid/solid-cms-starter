@@ -14,4 +14,5 @@ export { MoonIcon } from "./moon-icon";
 export { SearchIcon } from "./search-icon";
 export { Settings } from "./settings-icon";
 export { SunIcon } from "./sun-icon";
+export { Trash } from "./trash-icon";
 export { X } from "./x-icon";

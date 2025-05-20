@@ -13,7 +13,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
 } from "@tanstack/solid-table";
-import { createSignal, For, onMount, Show } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import { Button } from "~/components/ui/button";
 import {
   Table,
@@ -112,10 +112,10 @@ export function DataTable() {
     manualFiltering: true,
     manualSorting: true,
     pageCount: 10,
-  });
-
-  onMount(() => {
-    console.log("Mounted", table);
+    enableMultiSort: true,
+    defaultColumn: {
+      enableColumnFilter: false,
+    },
   });
 
   return (

@@ -9,3 +9,5 @@ export { MoonIcon } from "./moon-icon";
 export { SearchIcon } from "./search-icon";
 export { Settings } from "./settings-icon";
 export { SunIcon } from "./sun-icon";
+export { Up } from "./up-icon";
+export { Down } from "./down-icon";

@@ -1,12 +1,12 @@
 import type { ColumnDef } from "@tanstack/solid-table";
 import { createStore } from "solid-js/store";
-import { DataTable } from "../ui";
-import type { Payment } from "./constants";
+import { DataTable } from "..";
+import type { Payment } from "../../context/constants";
 import {
   DataTableContext,
   type Col,
   type TDataTable,
-} from "./data-table.context";
+} from "../../context/data-table.context";
 
 type Props<C = Col> = {
   columns: ColumnDef<C>[];

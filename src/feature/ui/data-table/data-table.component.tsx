@@ -1,5 +1,6 @@
 import type {
   ColumnFiltersState,
+  PaginationState,
   SortingState,
   VisibilityState,
 } from "@tanstack/solid-table";
@@ -7,11 +8,12 @@ import {
   createSolidTable,
   flexRender,
   getCoreRowModel,
+  getExpandedRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
 } from "@tanstack/solid-table";
-import { createSignal, For } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import { Button } from "~/components/ui/button";
 import {
   Table,
@@ -24,6 +26,7 @@ import {
 import { TextField, TextFieldInput } from "~/components/ui/text-field";
 import { useDataTable } from "~/feature/context/data-table.hook";
 import { ColumnView } from "./column-view.component";
+import { Sort } from "./sort.component";
 
 export type Payment = {
   id: string;
@@ -45,8 +48,14 @@ export function DataTable() {
   );
   const [rowSelection, setRowSelection] = createSignal({});
 
+  // this should came from url ? page=1&pageSize:10; like this
+  const [pagination, setPagination] = createSignal<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+
   /*
-get data() {
+    get data() {
       return props.data
     },
     get columns() {
@@ -55,17 +64,33 @@ get data() {
 */
 
   const table = createSolidTable({
-    data: data ?? [],
+    data: [],
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
-
+    getExpandedRowModel: getExpandedRowModel(),
+    onColumnFiltersChange: (updateOrValue) => {
+      console.log({
+        updateOrValue,
+      });
+    },
+    onPaginationChange(updatetorOrValue) {
+      if (typeof updatetorOrValue === "function") {
+        const newPagination = updatetorOrValue(pagination());
+        setPagination(newPagination);
+      } else {
+        // @TODO: NEED TO CHANGE THIS - IF has any problem
+        setPagination({
+          pageIndex: updatetorOrValue?.pageIndex + 1,
+          pageSize: updatetorOrValue?.pageSize,
+        });
+      }
+    },
+    onSortingChange: setSorting,
     state: {
       get sorting() {
         return sorting();
@@ -79,6 +104,17 @@ get data() {
       get rowSelection() {
         return rowSelection();
       },
+      get pagination() {
+        return pagination();
+      },
+    },
+    manualPagination: true,
+    manualFiltering: true,
+    manualSorting: true,
+    pageCount: 10,
+    enableMultiSort: true,
+    defaultColumn: {
+      enableColumnFilter: false,
     },
   });
 
@@ -91,7 +127,10 @@ get data() {
         >
           <TextFieldInput placeholder="Filter emails..." class="max-w-sm h-9" />
         </TextField>
-        <ColumnView columns={table.getAllColumns()} />
+        <div class="flex items-center gap-x-1.5">
+          <Sort table={table} />
+          <ColumnView columns={table.getAllColumns()} />
+        </div>
       </div>
       <div class="rounded-md border">
         <Table>
@@ -131,6 +170,18 @@ get data() {
                       </TableCell>
                     )}
                   </For>
+                  <Show when={row.getIsExpanded()}>
+                    <tr>
+                      <td colSpan={row.getAllCells().length}>
+                        {" "}
+                        {/* @TODO: NEED TO FIX THIS */}
+                        // The number of columns you wish to span for the
+                        expanded data if it is not a row that shares the same
+                        columns as the parent row
+                        {JSON.stringify(row)}
+                      </td>
+                    </tr>
+                  </Show>
                 </TableRow>
               ))
             ) : (

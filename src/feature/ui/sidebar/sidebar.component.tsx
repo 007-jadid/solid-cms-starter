@@ -23,6 +23,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "~/components/ui/collapsible";
+import { SidebarHeader } from "./sidebar-header.component";
 
 const items = [
   {
@@ -71,15 +72,11 @@ const items = [
 ];
 
 export function AppSidebar() {
-  console.log("Sidebar");
-
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel class="h-[40px] font-bold bg-white dark:bg-slate-900 text-lg items-center justify-center">
-            Foodi
-          </SidebarGroupLabel>
+          <SidebarHeader />
           <SidebarGroupContent>
             <SidebarMenu>
               <For each={items}>

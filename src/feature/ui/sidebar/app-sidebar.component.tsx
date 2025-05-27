@@ -1,14 +1,19 @@
 import { Link } from "@tanstack/solid-router";
-import { For, Match, Switch } from "solid-js";
+import { For, Match, Show, Switch } from "solid-js";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "~/components/ui/collapsible";
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuSub,
+  useSidebar,
 } from "~/components/ui/sidebar";
 import {
   CalendarIcon,
@@ -18,11 +23,6 @@ import {
   SearchIcon,
   Settings,
 } from "../icons";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "~/components/ui/collapsible";
 import { SidebarHeader } from "./sidebar-header.component";
 
 const items = [
@@ -72,6 +72,8 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const sidebarStore = useSidebar();
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -89,7 +91,9 @@ export function AppSidebar() {
                             <CollapsibleTrigger class="flex item-center px-3 justify-between w-full">
                               <div class="flex items-center gap-x-3">
                                 <item.icon />
-                                <span class="text-[13px]">{item.title}</span>
+                                <Show when={sidebarStore.open()}>
+                                  <span class="text-[13px]">{item.title}</span>
+                                </Show>
                               </div>
                               <Down />
                             </CollapsibleTrigger>
@@ -122,7 +126,7 @@ export function AppSidebar() {
                         </Collapsible>
                       </Match>
                       <Match when={!item.children?.length}>
-                        <SidebarMenuItem class="text-xs!">
+                        <SidebarMenuItem>
                           <Link
                             activeProps={{
                               class:
@@ -131,9 +135,12 @@ export function AppSidebar() {
                             activeOptions={{ exact: true }}
                             to={item.url}
                             class="flex items-center py-2 rounded px-3 gap-x-2 transition duration-100"
+                            // @TODO: NEED TO FIX THIS CLASS
                           >
                             <item.icon />
-                            <span class="text-[13px]">{item.title}</span>
+                            <Show when={sidebarStore.open()}>
+                              <span class="text-[13px]">{item.title}</span>
+                            </Show>
                           </Link>
                         </SidebarMenuItem>
                       </Match>

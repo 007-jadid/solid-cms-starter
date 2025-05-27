@@ -1,1 +1,1 @@
-export { AppSidebar } from "./sidebar.component";
+export { AppSidebar } from "./app-sidebar.component";

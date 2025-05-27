@@ -241,7 +241,7 @@ const Sidebar: Component<SidebarProps> = (rawProps) => {
           <div
             class={cn(
               "relative h-svh w-[--sidebar-width] bg-transparent transition-[width] duration-200 ease-linear",
-              "group-data-[collapsible=offcanvas]:w-0",
+              "group-data-[collapsible=offcanvas]:w-[--sidebar-width-icon]",
               "group-data-[side=right]:rotate-180",
               local.variant === "floating" || local.variant === "inset"
                 ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]"
@@ -251,9 +251,8 @@ const Sidebar: Component<SidebarProps> = (rawProps) => {
           <div
             class={cn(
               "fixed inset-y-0 z-10 hidden h-svh w-[--sidebar-width] transition-[left,right,width] duration-200 ease-linear md:flex",
-              local.side === "left"
-                ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
-                : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
+              "group-data-[collapsible=offcanvas]:w-[--sidebar-width-icon]",
+              local.side === "left" ? "left-0" : "right-0 ",
               // Adjust the padding for floating and inset variants.
               local.variant === "floating" || local.variant === "inset"
                 ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]"

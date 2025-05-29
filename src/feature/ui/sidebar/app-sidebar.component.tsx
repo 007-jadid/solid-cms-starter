@@ -15,6 +15,7 @@ import {
   SidebarMenuSub,
   useSidebar,
 } from "~/components/ui/sidebar";
+import { cn } from "~/lib/utils";
 import {
   CalendarIcon,
   Down,
@@ -80,7 +81,12 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarHeader />
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu
+              class={cn(
+                "space-y-3 mt-2",
+                !sidebarStore.open() ? "flex items-center justify-center" : ""
+              )}
+            >
               <For each={items}>
                 {(item) => {
                   return (
@@ -88,39 +94,45 @@ export function AppSidebar() {
                       <Match when={item.children?.length}>
                         <Collapsible>
                           <SidebarMenuItem>
-                            <CollapsibleTrigger class="flex item-center px-3 justify-between w-full">
-                              <div class="flex items-center gap-x-3">
+                            <CollapsibleTrigger class="flex item-center justify-between w-full">
+                              <div class="flex items-center gap-x-2">
                                 <item.icon />
                                 <Show when={sidebarStore.open()}>
-                                  <span class="text-[13px]">{item.title}</span>
+                                  <span class="text-[12px] pt-1">
+                                    {item.title}
+                                  </span>
                                 </Show>
                               </div>
-                              <Down />
+                              <Show when={sidebarStore.open()}>
+                                <Down />
+                              </Show>
                             </CollapsibleTrigger>
                             <CollapsibleContent>
-                              <SidebarMenuSub>
-                                <For each={item.children}>
-                                  {(child) => {
-                                    return (
-                                      <div>
-                                        <Link
-                                          activeProps={{
-                                            class:
-                                              "bg-white dark:bg-gray-600 transition duration-100",
-                                          }}
-                                          activeOptions={{ exact: true }}
-                                          to={child.url}
-                                          class="flex items-center py-2 rounded px-3 gap-x-2 transition duration-100"
-                                        >
-                                          <span class="text-[13px]">
-                                            {child.title}
-                                          </span>
-                                        </Link>
-                                      </div>
-                                    );
-                                  }}
-                                </For>
-                              </SidebarMenuSub>
+                              <Show when={sidebarStore.open()}>
+                                <SidebarMenuSub>
+                                  <For each={item.children}>
+                                    {(child) => {
+                                      return (
+                                        <div>
+                                          <Link
+                                            activeProps={{
+                                              class:
+                                                "bg-white dark:bg-gray-600 transition duration-100",
+                                            }}
+                                            activeOptions={{ exact: true }}
+                                            to={child.url}
+                                            class="flex items-center rounded gap-x-2 transition duration-100"
+                                          >
+                                            <span class="text-[13px]">
+                                              {child.title}
+                                            </span>
+                                          </Link>
+                                        </div>
+                                      );
+                                    }}
+                                  </For>
+                                </SidebarMenuSub>
+                              </Show>
                             </CollapsibleContent>
                           </SidebarMenuItem>
                         </Collapsible>
@@ -134,12 +146,13 @@ export function AppSidebar() {
                             }}
                             activeOptions={{ exact: true }}
                             to={item.url}
-                            class="flex items-center py-2 rounded px-3 gap-x-2 transition duration-100"
-                            // @TODO: NEED TO FIX THIS CLASS
+                            class={cn(
+                              "flex items-center rounded gap-x-2 transition duration-100"
+                            )}
                           >
                             <item.icon />
                             <Show when={sidebarStore.open()}>
-                              <span class="text-[13px]">{item.title}</span>
+                              <span class=" h-4">{item.title}</span>
                             </Show>
                           </Link>
                         </SidebarMenuItem>

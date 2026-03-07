@@ -42,50 +42,50 @@ A production-ready, feature-rich CMS starter built with **SolidJS** and the **Ta
 
 ## Features at a Glance
 
-| Category | What You Get |
-| --- | --- |
-| **UI Components** | 80+ components — buttons, dialogs, drawers, tabs, accordions, command palette, carousel, and more |
-| **Data Table** | Sorting, filtering, pagination, inline editing, row selection, drag-and-drop, virtualization, sub-grids, bulk actions, CSV/Excel export |
-| **Form Builder** | 25+ field types, multi-step wizards, array fields, conditional logic, Valibot validation |
-| **Auth** | Login flow, JWT token management, automatic refresh, route guards |
-| **Permissions** | Role-based access control with component guards, route guards, and action filtering |
-| **Theming** | Light/dark/system mode, multiple color variants, configurable fonts, density settings, glass effects |
-| **i18n** | Multi-language support (English + Bengali out of the box), easily extensible |
-| **Charts** | 7 chart types — line, area, bar, pie, radial, radar, with interactive tooltips |
-| **Maps** | Leaflet (OSM) and Google Maps providers, location search, drawing tools |
-| **Rich Text Editor** | Quill v2 with image upload, drag-resize, full formatting toolbar |
-| **Media Picker** | Client-side file browser with drag-and-drop, categorization, search |
-| **Animations** | GSAP directives — fadeIn, hoverLift, staggerChildren |
-| **Realtime** | WebSocket, Server-Sent Events (SSE), Web Push notifications |
-| **PWA** | Service worker, offline caching, installable app manifest |
-| **Query Cache** | Automatic query invalidation + optimistic cache updates after mutations — typed endpoint registry, zero config |
-| **Testing** | Vitest + SolidJS Testing Library |
-| **Bundle** | Smart code-splitting with 18+ optimized chunks |
+| Category             | What You Get                                                                                                                            |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **UI Components**    | 80+ components — buttons, dialogs, drawers, tabs, accordions, command palette, carousel, and more                                       |
+| **Data Table**       | Sorting, filtering, pagination, inline editing, row selection, drag-and-drop, virtualization, sub-grids, bulk actions, CSV/Excel export |
+| **Form Builder**     | 25+ field types, multi-step wizards, array fields, conditional logic, Valibot validation                                                |
+| **Auth**             | Login flow, JWT token management, automatic refresh, route guards                                                                       |
+| **Permissions**      | Role-based access control with component guards, route guards, and action filtering                                                     |
+| **Theming**          | Light/dark/system mode, multiple color variants, configurable fonts, density settings, glass effects                                    |
+| **i18n**             | Multi-language support (English + Bengali out of the box), easily extensible                                                            |
+| **Charts**           | 7 chart types — line, area, bar, pie, radial, radar, with interactive tooltips                                                          |
+| **Maps**             | Leaflet (OSM) and Google Maps providers, location search, drawing tools                                                                 |
+| **Rich Text Editor** | Quill v2 with image upload, drag-resize, full formatting toolbar                                                                        |
+| **Media Picker**     | Client-side file browser with drag-and-drop, categorization, search                                                                     |
+| **Animations**       | GSAP directives — fadeIn, hoverLift, staggerChildren                                                                                    |
+| **Realtime**         | WebSocket, Server-Sent Events (SSE), Web Push notifications                                                                             |
+| **PWA**              | Service worker, offline caching, installable app manifest                                                                               |
+| **Query Cache**      | Automatic query invalidation + optimistic cache updates after mutations — typed endpoint registry, zero config                          |
+| **Testing**          | Vitest + SolidJS Testing Library                                                                                                        |
+| **Bundle**           | Smart code-splitting with 18+ optimized chunks                                                                                          |
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-| --- | --- |
-| Framework | [SolidJS](https://www.solidjs.com/) 1.9 |
-| Routing | [TanStack Router](https://tanstack.com/router) (file-based, auto code-splitting) |
-| Server State | [TanStack Query](https://tanstack.com/query) v5 |
-| Tables | [TanStack Table](https://tanstack.com/table) v8 |
-| Forms | [TanStack Form](https://tanstack.com/form) + [Valibot](https://valibot.dev/) |
-| Virtualization | [TanStack Virtual](https://tanstack.com/virtual) |
-| UI Primitives | [Kobalte](https://kobalte.dev/) + [Corvu](https://corvu.dev/) |
-| Styling | [Tailwind CSS](https://tailwindcss.com/) v4 + [CVA](https://cva.style/) |
-| Charts | [Chart.js](https://www.chartjs.org/) + solid-chartjs |
-| Maps | [Leaflet](https://leafletjs.com/) + [Google Maps](https://developers.google.com/maps) |
-| Editor | [Quill](https://quilljs.com/) v2 |
-| Animations | [GSAP](https://gsap.com/) |
-| HTTP | [Axios](https://axios-http.com/) with interceptors |
-| i18n | [@solid-primitives/i18n](https://github.com/solidjs-community/solid-primitives) |
-| Validation | [Valibot](https://valibot.dev/) |
-| Build | [Vite](https://vite.dev/) 7 + [Bun](https://bun.sh/) |
-| Testing | [Vitest](https://vitest.dev/) + [SolidJS Testing Library](https://github.com/solidjs/solid-testing-library) |
-| Linting | [Biome](https://biomejs.dev/) + [ESLint](https://eslint.org/) |
+| Layer          | Technology                                                                                                  |
+| -------------- | ----------------------------------------------------------------------------------------------------------- |
+| Framework      | [SolidJS](https://www.solidjs.com/) 1.9                                                                     |
+| Routing        | [TanStack Router](https://tanstack.com/router) (file-based, auto code-splitting)                            |
+| Server State   | [TanStack Query](https://tanstack.com/query) v5                                                             |
+| Tables         | [TanStack Table](https://tanstack.com/table) v8                                                             |
+| Forms          | [TanStack Form](https://tanstack.com/form) + [Valibot](https://valibot.dev/)                                |
+| Virtualization | [TanStack Virtual](https://tanstack.com/virtual)                                                            |
+| UI Primitives  | [Kobalte](https://kobalte.dev/) + [Corvu](https://corvu.dev/)                                               |
+| Styling        | [Tailwind CSS](https://tailwindcss.com/) v4 + [CVA](https://cva.style/)                                     |
+| Charts         | [Chart.js](https://www.chartjs.org/) + solid-chartjs                                                        |
+| Maps           | [Leaflet](https://leafletjs.com/) + [Google Maps](https://developers.google.com/maps)                       |
+| Editor         | [Quill](https://quilljs.com/) v2                                                                            |
+| Animations     | [GSAP](https://gsap.com/)                                                                                   |
+| HTTP           | [Axios](https://axios-http.com/) with interceptors                                                          |
+| i18n           | [@solid-primitives/i18n](https://github.com/solidjs-community/solid-primitives)                             |
+| Validation     | [Valibot](https://valibot.dev/)                                                                             |
+| Build          | [Vite](https://vite.dev/) 7 + [Bun](https://bun.sh/)                                                        |
+| Testing        | [Vitest](https://vitest.dev/) + [SolidJS Testing Library](https://github.com/solidjs/solid-testing-library) |
+| Linting        | [Biome](https://biomejs.dev/) + [ESLint](https://eslint.org/)                                               |
 
 ---
 
@@ -99,8 +99,8 @@ A production-ready, feature-rich CMS starter built with **SolidJS** and the **Ta
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/cms-boilerplate-solid.git
-cd cms-boilerplate-solid
+git clone https://github.com/007-jadid/solid-cms-starter.git
+cd solid-cms-starter
 
 # Install dependencies
 bun install
@@ -209,10 +209,10 @@ const MyComponent = () => {
     "user": {
       "id": 1,
       "email": "admin@example.com",
-      "name": "Admin User"
+      "name": "Admin User",
     },
-    "menu": []   // optional — used by permission system (see below)
-  }
+    "menu": [], // optional — used by permission system (see below)
+  },
 }
 ```
 
@@ -229,8 +229,8 @@ const MyComponent = () => {
     "avatar": null,
     "role": "admin",
     "roles": ["admin"],
-    "permissions": ["*"]
-  }
+    "permissions": ["*"],
+  },
 }
 ```
 
@@ -241,7 +241,7 @@ const MyComponent = () => {
 // Response:
 {
   "token": "new-access-token...",
-  "refreshToken": "new-refresh-token..."
+  "refreshToken": "new-refresh-token...",
 }
 ```
 
@@ -256,8 +256,8 @@ interface AuthUser {
   lastName: string;
   avatar: string | null;
   role: string;
-  roles: string[];        // used by permission system
-  permissions: string[];   // action-level permissions
+  roles: string[]; // used by permission system
+  permissions: string[]; // action-level permissions
 }
 ```
 
@@ -284,7 +284,7 @@ import { PermissionGuard } from "~/features/context/permissions/permissions.cont
 
 <PermissionGuard action="users.create" fallback={<p>Access denied</p>}>
   <CreateUserButton />
-</PermissionGuard>
+</PermissionGuard>;
 ```
 
 **Hook:**
@@ -334,9 +334,13 @@ Permissions are loaded from the login response's `menu` field. The expected stru
     "menuActions": [
       { "id": 1, "name": "CUSTOMERS_VIEW", "displayName": "View Customers" },
       { "id": 2, "name": "CUSTOMERS_EDIT", "displayName": "Edit Customers" },
-      { "id": 3, "name": "CUSTOMERS_DELETE", "displayName": "Delete Customers" }
-    ]
-  }
+      {
+        "id": 3,
+        "name": "CUSTOMERS_DELETE",
+        "displayName": "Delete Customers",
+      },
+    ],
+  },
 ]
 ```
 
@@ -347,11 +351,11 @@ The system parses this into flat action permissions (e.g. `"CUSTOMERS_EDIT"`) an
 ```typescript
 // In PermissionsProvider or permissions.types.ts
 interface PermissionConfig {
-  enabled: boolean;                    // master toggle
-  pagePermissionEnabled: boolean;      // URL-based page access
-  actionPermissionEnabled: boolean;    // action-based access
-  defaultBehavior: "deny" | "allow";   // what to do when no permission matches
-  debug: boolean;                      // console.log permission checks (DEV only)
+  enabled: boolean; // master toggle
+  pagePermissionEnabled: boolean; // URL-based page access
+  actionPermissionEnabled: boolean; // action-based access
+  defaultBehavior: "deny" | "allow"; // what to do when no permission matches
+  debug: boolean; // console.log permission checks (DEV only)
 }
 ```
 
@@ -446,10 +450,8 @@ import { DataTable } from "~/features/ui/data-table/data-table";
   enableRowSelection
   enableExport
   searchKey="name"
-  bulkActions={[
-    { label: "Delete", action: (rows) => handleBulkDelete(rows) },
-  ]}
-/>
+  bulkActions={[{ label: "Delete", action: (rows) => handleBulkDelete(rows) }]}
+/>;
 ```
 
 ### Server-Side API Response Format
@@ -459,16 +461,19 @@ When using `url` or `fetcher`, the DataTable expects this response shape by defa
 ```jsonc
 {
   "data": {
-    "items": [{ "id": 1, "name": "Alice" }, { "id": 2, "name": "Bob" }],
+    "items": [
+      { "id": 1, "name": "Alice" },
+      { "id": 2, "name": "Bob" },
+    ],
     "itemPerPage": 10,
     "pageNumber": 1,
     "totalItems": 42,
     "totalPage": 5,
     "hasNext": true,
-    "hasPrev": false
+    "hasPrev": false,
   },
   "status": true,
-  "message": "Success"
+  "message": "Success",
 }
 ```
 
@@ -484,11 +489,11 @@ If your API uses different field names, pass `responseKeys` to remap:
 <DataTable
   url="/api/users"
   responseKeys={{
-    items: "records",        // default: "items"
-    totalItems: "total",     // default: "totalItems"
-    totalPage: "pages",      // default: "totalPage"
-    pageNumber: "page",      // default: "pageNumber"
-    itemPerPage: "perPage",  // default: "itemPerPage"
+    items: "records", // default: "items"
+    totalItems: "total", // default: "totalItems"
+    totalPage: "pages", // default: "totalPage"
+    pageNumber: "page", // default: "pageNumber"
+    itemPerPage: "perPage", // default: "itemPerPage"
   }}
 />
 ```
@@ -522,14 +527,14 @@ A declarative form builder powered by TanStack Form and Valibot validation.
 
 ### 25+ Field Types
 
-| Category | Types |
-| --- | --- |
-| Text | `text`, `email`, `password`, `textarea`, `url`, `phone`, `search` |
-| Number | `number`, `slider`, `rating` |
-| Date/Time | `date`, `date-range`, `time`, `datetime` |
-| Selection | `select`, `radio-group`, `checkbox`, `switch`, `tags` |
-| Special | `array`, `file`, `color`, `otp` |
-| Rich | `richtext` (Quill editor), `media` (file picker), `map` (location picker) |
+| Category  | Types                                                                     |
+| --------- | ------------------------------------------------------------------------- |
+| Text      | `text`, `email`, `password`, `textarea`, `url`, `phone`, `search`         |
+| Number    | `number`, `slider`, `rating`                                              |
+| Date/Time | `date`, `date-range`, `time`, `datetime`                                  |
+| Selection | `select`, `radio-group`, `checkbox`, `switch`, `tags`                     |
+| Special   | `array`, `file`, `color`, `otp`                                           |
+| Rich      | `richtext` (Quill editor), `media` (file picker), `map` (location picker) |
 
 ### Form Example
 
@@ -679,10 +684,18 @@ All charts use the standard [Chart.js data format](https://www.chartjs.org/docs/
 <PieChart
   data={{
     labels: ["Chrome", "Safari", "Firefox", "Edge", "Other"],
-    datasets: [{
-      data: [275, 200, 187, 173, 90],
-      backgroundColor: ["#e76e50", "#2a9d90", "#264653", "#e9c46a", "#f4a261"],
-    }],
+    datasets: [
+      {
+        data: [275, 200, 187, 173, 90],
+        backgroundColor: [
+          "#e76e50",
+          "#2a9d90",
+          "#264653",
+          "#e9c46a",
+          "#f4a261",
+        ],
+      },
+    ],
   }}
   height={200}
 />
@@ -720,8 +733,8 @@ All charts accept:
 
 ```typescript
 interface BaseChartProps {
-  height?: number;    // pixels, default varies
-  class?: string;     // additional CSS classes
+  height?: number; // pixels, default varies
+  class?: string; // additional CSS classes
 }
 
 // Each chart type extends this with typed data/options:
@@ -746,10 +759,10 @@ Plugin-based map system supporting multiple providers.
 
 ### Providers
 
-| Provider | Requires API Key | Drawing Tools |
-| --- | --- | --- |
-| **Leaflet** (OpenStreetMap) | No | Geoman |
-| **Google Maps** | Yes (`VITE_APP_GOOGLE_MAP_API_KEY`) | Terra Draw |
+| Provider                    | Requires API Key                    | Drawing Tools |
+| --------------------------- | ----------------------------------- | ------------- |
+| **Leaflet** (OpenStreetMap) | No                                  | Geoman        |
+| **Google Maps**             | Yes (`VITE_APP_GOOGLE_MAP_API_KEY`) | Terra Draw    |
 
 ### Using Leaflet (OpenStreetMap)
 
@@ -764,7 +777,7 @@ import { Map } from "~/features/ui/components/map/map";
   zoom={13}
   draggableMarker
   onMarkerChange={(loc) => console.log(loc)}
-/>
+/>;
 ```
 
 You can customize the tile server and geocoding endpoint:
@@ -818,7 +831,13 @@ type DrawnShapeData =
   | { type: "marker"; lat: number; lng: number }
   | { type: "polyline"; points: { lat: number; lng: number }[] }
   | { type: "polygon"; points: { lat: number; lng: number }[] }
-  | { type: "rectangle"; north: number; south: number; east: number; west: number }
+  | {
+      type: "rectangle";
+      north: number;
+      south: number;
+      east: number;
+      west: number;
+    }
   | { type: "circle"; center: { lat: number; lng: number }; radius: number };
 ```
 
@@ -835,7 +854,7 @@ import { MapLocationSearch } from "~/features/ui/components/map";
   value={selectedLocation()}
   searchPlaceholder="Search for a location..."
   showClear
-/>
+/>;
 ```
 
 ### Imperative Map Control
@@ -847,8 +866,10 @@ let mapRef: MapControlRef;
 
 <Map
   provider={{ type: "leaflet" }}
-  onReady={(ref) => { mapRef = ref; }}
-/>
+  onReady={(ref) => {
+    mapRef = ref;
+  }}
+/>;
 
 // Later:
 mapRef.setCenter(40.7128, -74.006, 15);
@@ -862,8 +883,8 @@ In `src/app/map-runtime-config.ts`, control which providers are available at run
 
 ```typescript
 export const MAP_RUNTIME_CONFIG: MapConfig = {
-  countryCode: "BD",                              // restrict geocoding to this country
-  enabledProviders: ["leaflet", "google"],         // or ["leaflet"] or []
+  countryCode: "BD", // restrict geocoding to this country
+  enabledProviders: ["leaflet", "google"], // or ["leaflet"] or []
 };
 ```
 
@@ -885,7 +906,7 @@ interface MapLocation {
   city?: string;
   country?: string;
   postalCode?: string;
-  placeId?: string;   // Google only
+  placeId?: string; // Google only
 }
 ```
 
@@ -918,7 +939,7 @@ import { RichTextEditor } from "~/features/ui/components/rich-text-editor";
   value={content()}
   onChange={setContent}
   placeholder="Write something..."
-/>
+/>;
 ```
 
 Or as a form field: `{ name: "body", type: "richtext" }`
@@ -999,11 +1020,11 @@ import { fadeIn, hoverLift, staggerChildren } from "~/features/lib/motion";
 
 Optional realtime communication built in. All realtime features are registered as CMS plugins (see [CMS Plugin System](#cms-plugin-system)).
 
-| Feature | Env Variable | Library |
-| --- | --- | --- |
-| WebSocket | `VITE_WS_URL` | socket.io-client / native WebSocket |
-| Server-Sent Events | `VITE_SSE_URL` | @microsoft/fetch-event-source |
-| Web Push | `VITE_VAPID_PUBLIC_KEY` | Native Push API |
+| Feature            | Env Variable            | Library                             |
+| ------------------ | ----------------------- | ----------------------------------- |
+| WebSocket          | `VITE_WS_URL`           | socket.io-client / native WebSocket |
+| Server-Sent Events | `VITE_SSE_URL`          | @microsoft/fetch-event-source       |
+| Web Push           | `VITE_VAPID_PUBLIC_KEY` | Native Push API                     |
 
 ### WebSocket
 
@@ -1117,7 +1138,7 @@ const MyComponent = () => {
   "image": "/order-preview.png",
   "actionUrl": "/orders/123",
   "category": "orders",
-  "priority": "high"   // "low" | "normal" | "high" | "urgent"
+  "priority": "high", // "low" | "normal" | "high" | "urgent"
 }
 ```
 
@@ -1127,10 +1148,10 @@ All realtime providers share the same reconnection config:
 
 ```typescript
 interface ReconnectConfig {
-  enabled: boolean;       // default: true
-  maxAttempts: number;    // default: 10
-  baseDelay: number;      // default: 1000ms
-  maxDelay: number;       // default: 30000ms (exponential backoff)
+  enabled: boolean; // default: true
+  maxAttempts: number; // default: 10
+  baseDelay: number; // default: 1000ms
+  maxDelay: number; // default: 30000ms (exponential backoff)
 }
 ```
 
@@ -1195,8 +1216,8 @@ Define all API endpoints once in `src/features/api/endpoints.ts`:
 ```ts
 export const API_ENDPOINTS = {
   USER: {
-    LIST:   '/api/users',
-    CREATE: '/api/users',
+    LIST: "/api/users",
+    CREATE: "/api/users",
     DETAIL: (id: string) => `/api/users/${id}`,
     UPDATE: (id: string) => `/api/users/${id}`,
     DELETE: (id: string) => `/api/users/${id}`,
@@ -1210,12 +1231,12 @@ The `ApiEndpointUrl` type is automatically derived — it includes only static s
 ### Scenario 1 — Direct Cache Update (instant UI, no refetch)
 
 ```ts
-import { usePost, API_ENDPOINTS, cacheOps } from '~/features/hooks';
+import { usePost, API_ENDPOINTS, cacheOps } from "~/features/hooks";
 
 const create = usePost(API_ENDPOINTS.USER.CREATE, {
   meta: {
     cacheUpdate: {
-      resource: API_ENDPOINTS.USER.LIST,  // typed — autocomplete ✅
+      resource: API_ENDPOINTS.USER.LIST, // typed — autocomplete ✅
       updater: (old, newUser) => cacheOps.prepend<User>(old, newUser as User),
     },
   },
@@ -1224,11 +1245,11 @@ const create = usePost(API_ENDPOINTS.USER.CREATE, {
 
 The `cacheOps` helpers handle both paginated `ResponseMapperResult<T>` (DataTable) and plain arrays (`useGet`):
 
-| Helper | What it does |
-| --- | --- |
-| `cacheOps.prepend<T>(old, item)` | New item at top, maintains page size, increments `totalItems` |
-| `cacheOps.updateItem<T>(matcher, old, item)` | Replaces first matching item in place |
-| `cacheOps.removeItem<T>(matcher, old)` | Removes first matching item, decrements `totalItems` |
+| Helper                                       | What it does                                                  |
+| -------------------------------------------- | ------------------------------------------------------------- |
+| `cacheOps.prepend<T>(old, item)`             | New item at top, maintains page size, increments `totalItems` |
+| `cacheOps.updateItem<T>(matcher, old, item)` | Replaces first matching item in place                         |
+| `cacheOps.removeItem<T>(matcher, old)`       | Removes first matching item, decrements `totalItems`          |
 
 > **Note:** `prepend` is reliable on page 1 only. On page 2+ the data is returned unchanged. Pair with `invalidates` to refetch other pages in the background.
 
@@ -1237,7 +1258,7 @@ The `cacheOps` helpers handle both paginated `ResponseMapperResult<T>` (DataTabl
 ```ts
 const create = usePost(API_ENDPOINTS.USER.CREATE, {
   meta: {
-    invalidates: [API_ENDPOINTS.USER.LIST],  // typed ✅
+    invalidates: [API_ENDPOINTS.USER.LIST], // typed ✅
   },
 });
 ```
@@ -1247,7 +1268,9 @@ Active queries (currently mounted) refetch immediately. Inactive queries are mar
 Cross-resource invalidation:
 
 ```ts
-meta: { invalidates: [API_ENDPOINTS.USER.LIST, API_ENDPOINTS.DASHBOARD.STATS] }
+meta: {
+  invalidates: [API_ENDPOINTS.USER.LIST, API_ENDPOINTS.DASHBOARD.STATS];
+}
 ```
 
 ### Both Together
@@ -1260,7 +1283,11 @@ const update = usePut(() => API_ENDPOINTS.USER.DETAIL(id()), {
     cacheUpdate: {
       resource: API_ENDPOINTS.USER.LIST,
       updater: (old, updated) =>
-        cacheOps.updateItem<User>((u) => u.id === (updated as User).id, old, updated as User),
+        cacheOps.updateItem<User>(
+          (u) => u.id === (updated as User).id,
+          old,
+          updated as User,
+        ),
     },
     invalidates: [API_ENDPOINTS.USER.LIST],
   },
@@ -1271,12 +1298,12 @@ const update = usePut(() => API_ENDPOINTS.USER.DETAIL(id()), {
 
 A `predicate` scans every element of a queryKey for the resource URL — works across all query key structures in the codebase:
 
-| QueryKey | Source | Matched by `/api/users`? |
-| --- | --- | --- |
-| `['/api/users']` | `useGet` | ✅ |
-| `['data-table', '/api/users', { page, sort, ... }]` | DataTable | ✅ |
-| `['sub-grid', '/api/users/123/orders']` | SubGrid | ✅ |
-| `['/api/roles']` | Different resource | ❌ |
+| QueryKey                                            | Source             | Matched by `/api/users`? |
+| --------------------------------------------------- | ------------------ | ------------------------ |
+| `['/api/users']`                                    | `useGet`           | ✅                       |
+| `['data-table', '/api/users', { page, sort, ... }]` | DataTable          | ✅                       |
+| `['sub-grid', '/api/users/123/orders']`             | SubGrid            | ✅                       |
+| `['/api/roles']`                                    | Different resource | ❌                       |
 
 URL matching is segment-safe: `/api/users` matches `/api/users`, `/api/users/123`, `/api/users?page=1` — but **not** `/api/users-legacy`.
 
@@ -1344,18 +1371,18 @@ VITE_CMS_EDITOR=quill                           # quill | none
 
 ## Scripts
 
-| Command | Description |
-| --- | --- |
-| `bun run dev` | Start development server |
-| `bun run build` | Production build + type check |
-| `bun run preview` | Preview production build |
-| `bun run test` | Run tests |
-| `bun run test:watch` | Run tests in watch mode |
-| `bun run test:coverage` | Run tests with coverage |
-| `bun run analyze` | Build + open bundle visualizer |
-| `bun run lint` | Lint with Biome + ESLint |
-| `bun run lint:fix` | Auto-fix lint issues |
-| `bun run format` | Format code with Biome |
+| Command                 | Description                    |
+| ----------------------- | ------------------------------ |
+| `bun run dev`           | Start development server       |
+| `bun run build`         | Production build + type check  |
+| `bun run preview`       | Preview production build       |
+| `bun run test`          | Run tests                      |
+| `bun run test:watch`    | Run tests in watch mode        |
+| `bun run test:coverage` | Run tests with coverage        |
+| `bun run analyze`       | Build + open bundle visualizer |
+| `bun run lint`          | Lint with Biome + ESLint       |
+| `bun run lint:fix`      | Auto-fix lint issues           |
+| `bun run format`        | Format code with Biome         |
 
 ---
 
@@ -1380,7 +1407,7 @@ export const cms = createCMS([
   wsPlugin({ transport: "websocket", autoConnect: true }),
   ssePlugin({ autoConnect: true }),
   webPushPlugin({ vapidPublicKey: "BKx..." }),
-] as const);  // `as const` enables type-safe cms.use()
+] as const); // `as const` enables type-safe cms.use()
 ```
 
 ### Provider Stack
@@ -1396,7 +1423,9 @@ function App() {
           <AuthProvider>
             <PermissionsProvider>
               <MapConfigProvider config={MAP_RUNTIME_CONFIG}>
-                <cms.Provider>           {/* <-- all plugins nested here */}
+                <cms.Provider>
+                  {" "}
+                  {/* <-- all plugins nested here */}
                   <RouterProvider router={router} />
                 </cms.Provider>
               </MapConfigProvider>
@@ -1413,10 +1442,10 @@ function App() {
 
 ```tsx
 // Type-safe — only accepts names of registered plugins
-const ws = cms.use("ws");           // WSContextValue
-const sse = cms.use("sse");         // SSEContextValue
-const push = cms.use("webpush");    // WebPushContextValue
-const pwa = cms.use("pwa");         // PWAContextValue
+const ws = cms.use("ws"); // WSContextValue
+const sse = cms.use("sse"); // SSEContextValue
+const push = cms.use("webpush"); // WebPushContextValue
+const pwa = cms.use("pwa"); // PWAContextValue
 const notif = cms.use("notifications"); // NotificationsContextValue
 
 // Runtime check
@@ -1455,13 +1484,13 @@ export const cms = createCMS([
 
 ### Available Plugins
 
-| Plugin | Name | What It Provides |
-| --- | --- | --- |
-| `pwaPlugin()` | `"pwa"` | Install prompt, update banner, service worker registration |
-| `notificationsPlugin()` | `"notifications"` | In-app notification store + NotificationCenter in navbar |
-| `wsPlugin()` | `"ws"` | WebSocket connection + status dot in navbar |
-| `ssePlugin()` | `"sse"` | SSE connection + status dot in navbar |
-| `webPushPlugin()` | `"webpush"` | Browser push subscription management |
+| Plugin                  | Name              | What It Provides                                           |
+| ----------------------- | ----------------- | ---------------------------------------------------------- |
+| `pwaPlugin()`           | `"pwa"`           | Install prompt, update banner, service worker registration |
+| `notificationsPlugin()` | `"notifications"` | In-app notification store + NotificationCenter in navbar   |
+| `wsPlugin()`            | `"ws"`            | WebSocket connection + status dot in navbar                |
+| `ssePlugin()`           | `"sse"`           | SSE connection + status dot in navbar                      |
+| `webPushPlugin()`       | `"webpush"`       | Browser push subscription management                       |
 
 ---
 
@@ -1477,7 +1506,7 @@ interface LoginResponse {
     token: string;
     refreshToken: string;
     user: { id: number; email: string; name: string };
-    menu?: ApiMenuItem[];  // for permission system
+    menu?: ApiMenuItem[]; // for permission system
   };
 }
 ```
@@ -1526,7 +1555,7 @@ interface ApiMenuItem {
 
 interface ApiMenuAction {
   id: number;
-  name: string;           // permission key: "CUSTOMERS_EDIT"
+  name: string; // permission key: "CUSTOMERS_EDIT"
   displayName: string;
 }
 ```
@@ -1536,8 +1565,8 @@ interface ApiMenuAction {
 ```typescript
 // Incoming (parsed from JSON):
 interface WSMessage {
-  event: string;    // e.g. "user:updated"
-  data?: unknown;   // event payload
+  event: string; // e.g. "user:updated"
+  data?: unknown; // event payload
 }
 
 // Outgoing (sent as JSON):
@@ -1582,9 +1611,10 @@ If your login API returns a different structure (e.g. `accessToken` instead of `
 // Change this to match YOUR backend's login response
 interface LoginResponse {
   data: {
-    accessToken: string;        // was: token
+    accessToken: string; // was: token
     refreshToken: string;
-    profile: {                  // was: user (Record<string, unknown>)
+    profile: {
+      // was: user (Record<string, unknown>)
       userId: number;
       email: string;
       fullName: string;
@@ -1618,7 +1648,9 @@ export function parseUser(data: Record<string, unknown>): AuthUser {
     lastName: String(data.lastName ?? ""),
     avatar: data.avatar ? String(data.avatar) : null,
     role: String(data.role ?? "user"),
-    roles: Array.isArray(data.roles) ? data.roles : [String(data.role ?? "user")],
+    roles: Array.isArray(data.roles)
+      ? data.roles
+      : [String(data.role ?? "user")],
     permissions: Array.isArray(data.permissions) ? data.permissions : [],
   };
 }
@@ -1637,7 +1669,7 @@ export interface AuthUser {
   role: string;
   roles: string[];
   permissions: string[];
-  phone?: string;         // add your custom fields
+  phone?: string; // add your custom fields
   department?: string;
 }
 ```
@@ -1648,10 +1680,12 @@ Update the `RefreshResponse` interface in [auth.context.tsx](src/features/contex
 
 ```typescript
 interface RefreshResponse {
-  accessToken: string;       // was: token
+  accessToken: string; // was: token
   refreshToken: string;
 }
-const response = await apiClient.post<RefreshResponse>("/auth/refresh", { refreshToken });
+const response = await apiClient.post<RefreshResponse>("/auth/refresh", {
+  refreshToken,
+});
 const { accessToken, refreshToken: newRefreshToken } = response;
 ```
 
@@ -1688,7 +1722,10 @@ If your API has a fundamentally different shape:
   endpoint="/api/users"
   columns={columns}
   responseMapper={(response) => {
-    const res = response as { records: User[]; meta: { total: number; page: number; limit: number } };
+    const res = response as {
+      records: User[];
+      meta: { total: number; page: number; limit: number };
+    };
     return {
       items: res.records,
       totalItems: res.meta.total,
@@ -1715,9 +1752,9 @@ If your backend returns permissions differently than the `ApiMenuItem[]` tree:
 ```typescript
 // Change ApiMenuItem / ApiMenuAction to match your backend
 export interface ApiMenuItem {
-  menuId: number;            // was: id
-  title: string;             // was: name
-  path: string | null;       // was: url
+  menuId: number; // was: id
+  title: string; // was: name
+  path: string | null; // was: url
   // ... adapt all fields
 }
 ```
@@ -1727,13 +1764,18 @@ export interface ApiMenuItem {
 ```typescript
 export function parseLoginPermissions(menu: ApiMenuItem[]): ParsedPermissions {
   // Update field access to match your new ApiMenuItem shape
-  const processMenu = (items: ApiMenuItem[], parentId: string | null = null, depth = 0) => {
+  const processMenu = (
+    items: ApiMenuItem[],
+    parentId: string | null = null,
+    depth = 0,
+  ) => {
     items.forEach((item) => {
-      if (item.path) {  // was: item.url
+      if (item.path) {
+        // was: item.url
         const menuItem: MenuItem = {
-          id: String(item.menuId),  // was: item.id
-          name: item.title,         // was: item.name
-          url: item.path,           // was: item.url
+          id: String(item.menuId), // was: item.id
+          name: item.title, // was: item.name
+          url: item.path, // was: item.url
           // ...
         };
         pagePermissionMap.set(normalizeUrl(item.path), menuItem);
@@ -1755,7 +1797,7 @@ export interface WSEventMap {
   "user:updated": { id: number; name: string };
   "order:created": { orderId: string; total: number };
   "chat:message": { text: string; from: string };
-  [key: string]: unknown;  // allow arbitrary events
+  [key: string]: unknown; // allow arbitrary events
 }
 ```
 
@@ -1771,17 +1813,17 @@ export interface SSEEventMap {
 
 ### Summary of Files to Change
 
-| What to customize | File(s) to edit |
-| --- | --- |
-| Login response shape | `src/features/context/auth/auth.context.tsx` (LoginResponse interface + destructuring) |
-| User fields | `src/features/context/auth/auth.types.ts` (AuthUser) + `auth.utils.ts` (parseUser) |
-| Token refresh response | `src/features/context/auth/auth.context.tsx` (RefreshResponse interface) |
-| DataTable response (per-table) | Pass `responseKeys` or `responseMapper` prop to `<DataTable>` |
-| DataTable response (global default) | `src/features/ui/data-table/utils/query-utils.ts` (defaultResponseMapper) |
-| Permission menu structure | `src/features/context/permissions/permissions.types.ts` + `permissions.utils.ts` |
-| WebSocket event types | `src/features/context/websocket/websocket.types.ts` (WSEventMap) |
-| SSE event types | `src/features/context/sse/sse.types.ts` (SSEEventMap) |
-| Web Push payload | `src/features/context/webpush/webpush.context.tsx` (notification handler in service worker) |
+| What to customize                   | File(s) to edit                                                                             |
+| ----------------------------------- | ------------------------------------------------------------------------------------------- |
+| Login response shape                | `src/features/context/auth/auth.context.tsx` (LoginResponse interface + destructuring)      |
+| User fields                         | `src/features/context/auth/auth.types.ts` (AuthUser) + `auth.utils.ts` (parseUser)          |
+| Token refresh response              | `src/features/context/auth/auth.context.tsx` (RefreshResponse interface)                    |
+| DataTable response (per-table)      | Pass `responseKeys` or `responseMapper` prop to `<DataTable>`                               |
+| DataTable response (global default) | `src/features/ui/data-table/utils/query-utils.ts` (defaultResponseMapper)                   |
+| Permission menu structure           | `src/features/context/permissions/permissions.types.ts` + `permissions.utils.ts`            |
+| WebSocket event types               | `src/features/context/websocket/websocket.types.ts` (WSEventMap)                            |
+| SSE event types                     | `src/features/context/sse/sse.types.ts` (SSEEventMap)                                       |
+| Web Push payload                    | `src/features/context/webpush/webpush.context.tsx` (notification handler in service worker) |
 
 ---
 
@@ -1806,8 +1848,8 @@ Please include:
 
 ```bash
 # Fork and clone
-git clone https://github.com/your-username/cms-boilerplate-solid.git
-cd cms-boilerplate-solid
+git clone https://github.com/007-jadid/solid-cms-starter.git
+cd solid-cms-starter
 bun install
 
 # Create a branch

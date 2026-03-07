@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
+GitHub repository: https://github.com/007-jadid/solid-cms-starter.git
+
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [1.0.0] - 2025-01-01

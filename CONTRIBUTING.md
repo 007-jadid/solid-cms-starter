@@ -7,8 +7,8 @@ Thank you for considering contributing to CMS Boilerplate Solid! This guide will
 1. Fork the repository
 2. Clone your fork:
    ```bash
-   git clone https://github.com/your-username/cms-boilerplate-solid.git
-   cd cms-boilerplate-solid
+   git clone https://github.com/007-jadid/solid-cms-starter.git
+   cd solid-cms-starter
    ```
 3. Install dependencies:
    ```bash

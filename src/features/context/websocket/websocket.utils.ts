@@ -23,15 +23,19 @@ export function addListener(
   return () => listeners.get(event)?.delete(handler);
 }
 
-export function removeListener(listeners: EventListeners, event: string, handler: WSEventHandler) {
+export function removeListener(
+  listeners: EventListeners,
+  event: string,
+  handler: WSEventHandler,
+) {
   listeners.get(event)?.delete(handler);
 }
 
-/** Build a WebSocket URL with auth token as query param */
-export function buildWSUrl(base: string, token: string | null): string {
-  const url = new URL(base);
-  if (token) {
-    url.searchParams.set("token", token);
-  }
-  return url.toString();
+/**
+ * Build a WebSocket URL.
+ * Token is no longer appended as a query param to avoid leaking via logs/proxies.
+ * Instead, auth is handled by sending a token message after the connection opens.
+ */
+export function buildWSUrl(base: string): string {
+  return new URL(base).toString();
 }

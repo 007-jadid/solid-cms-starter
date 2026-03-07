@@ -1,8 +1,14 @@
 import { Bar } from "solid-chartjs";
 import { For } from "solid-js";
+import { escapeHtml } from "~/features/lib/utils";
 import { getDefaultChartOptions } from "~/features/ui/charts";
 import { DAYS, RUNNING, SWIMMING } from "../chart-data";
-import { ChartGrid, ChartShowcaseCard, ChartWrap, TooltipTabIcon } from "../chart-showcase-card";
+import {
+  ChartGrid,
+  ChartShowcaseCard,
+  ChartWrap,
+  TooltipTabIcon,
+} from "../chart-showcase-card";
 
 // ════════════════════════════════════════════
 // TOOLTIPS SECTION
@@ -36,8 +42,10 @@ export function makeTooltipExternal(config: {
       let html = "";
 
       if (config.showLabel !== false && titleLines.length > 0) {
-        const title = config.labelFormatter ? config.labelFormatter(titleLines[0]) : titleLines[0];
-        html += `<div class="tooltip-title">${title}</div>`;
+        const title = config.labelFormatter
+          ? config.labelFormatter(titleLines[0])
+          : titleLines[0];
+        html += `<div class="tooltip-title">${escapeHtml(title)}</div>`;
       }
 
       html += '<div class="tooltip-body">';
@@ -46,19 +54,21 @@ export function makeTooltipExternal(config: {
       bodyLines.forEach((body: any, i: number) => {
         const colors = model.labelColors[i];
         const dotColor = colors.borderColor || colors.backgroundColor;
+        const safeDotColor = escapeHtml(String(dotColor));
         let indicator = "";
         if (config.indicator === "line") {
-          indicator = `<span style="width:8px;height:2px;background:${dotColor};display:inline-block;border-radius:1px;flex-shrink:0"></span>`;
+          indicator = `<span style="width:8px;height:2px;background:${safeDotColor};display:inline-block;border-radius:1px;flex-shrink:0"></span>`;
         } else if (config.indicator !== "none") {
-          indicator = `<span class="tooltip-dot" style="background:${dotColor}"></span>`;
+          indicator = `<span class="tooltip-dot" style="background:${safeDotColor}"></span>`;
         }
         const text = body[0];
         const colonIdx = text.indexOf(":");
-        const label = colonIdx !== -1 ? text.substring(0, colonIdx).trim() : text;
+        const label =
+          colonIdx !== -1 ? text.substring(0, colonIdx).trim() : text;
         let value = colonIdx !== -1 ? text.substring(colonIdx + 1).trim() : "";
         if (config.valueFormatter) value = config.valueFormatter(value);
         total += parseFloat(value.replace(/[^0-9.-]/g, "")) || 0;
-        html += `<div class="tooltip-item">${indicator}<span class="tooltip-label">${label}</span><span class="tooltip-value">${value}</span></div>`;
+        html += `<div class="tooltip-item">${indicator}<span class="tooltip-label">${escapeHtml(label)}</span><span class="tooltip-value">${escapeHtml(value)}</span></div>`;
       });
       if (config.showTotal) {
         html += `<div style="border-top:1px solid var(--border);margin-top:4px;padding-top:4px" class="tooltip-item"><span class="tooltip-dot" style="background:transparent"></span><span class="tooltip-label">Total</span><span class="tooltip-value">${Math.round(total)}</span></div>`;

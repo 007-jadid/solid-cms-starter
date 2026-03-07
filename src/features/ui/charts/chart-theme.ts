@@ -5,6 +5,7 @@
 
 import type { Chart, ChartType, TooltipModel } from "chart.js";
 import { createMemo, createSignal } from "solid-js";
+import { escapeHtml } from "~/features/lib/utils";
 
 // ── Shared reactive theme version ──────────────────────────────────────
 // Bumps whenever <html> class changes (light ↔ dark, theme variant).
@@ -37,7 +38,9 @@ export { themeVersion };
 
 function getCSSVariable(variable: string): string {
   if (typeof window === "undefined") return "";
-  return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue(variable)
+    .trim();
 }
 
 function oklchToRgb(color: string): string {
@@ -147,7 +150,12 @@ export function getDefaultChartOptions() {
     animation: {
       duration: 1000,
       easing: "easeOutExpo" as const,
-      delay: (context: { type: string; mode: string; dataIndex: number; datasetIndex: number }) => {
+      delay: (context: {
+        type: string;
+        mode: string;
+        dataIndex: number;
+        datasetIndex: number;
+      }) => {
         let delay = 0;
         if (context.type === "data" && context.mode === "default") {
           delay = context.dataIndex * 50 + context.datasetIndex * 100;
@@ -176,7 +184,10 @@ export function getDefaultChartOptions() {
       },
       tooltip: {
         enabled: false,
-        external: (context: { chart: Chart; tooltip: TooltipModel<ChartType> }) => {
+        external: (context: {
+          chart: Chart;
+          tooltip: TooltipModel<ChartType>;
+        }) => {
           let tooltipEl = document.getElementById("chartjs-tooltip");
 
           if (!tooltipEl) {
@@ -203,32 +214,35 @@ export function getDefaultChartOptions() {
 
             let innerHtml = '<div class="tooltip-title">';
             titleLines.forEach((title: string) => {
-              innerHtml += title;
+              innerHtml += escapeHtml(title);
             });
             innerHtml += '</div><div class="tooltip-body">';
 
             bodyLines.forEach((body: string[], i: number) => {
               const colors = tooltipModel.labelColors[i];
               const dotColor = colors.borderColor || colors.backgroundColor;
+              const safeDotColor = escapeHtml(String(dotColor));
               const dot =
                 '<span class="inline-block w-2.5 h-2.5 rounded-full shadow-sm" style="background:' +
-                dotColor +
+                safeDotColor +
                 '"></span>';
 
               const text = body[0];
               const colonIdx = text.indexOf(":");
-              const label = colonIdx !== -1 ? text.substring(0, colonIdx).trim() : text;
-              const value = colonIdx !== -1 ? text.substring(colonIdx + 1).trim() : "";
+              const label =
+                colonIdx !== -1 ? text.substring(0, colonIdx).trim() : text;
+              const value =
+                colonIdx !== -1 ? text.substring(colonIdx + 1).trim() : "";
 
               innerHtml +=
                 '<div class="flex items-center justify-between gap-4 font-medium">' +
                 '<div class="flex items-center gap-2">' +
                 dot +
                 '<span class="text-muted-foreground">' +
-                label +
+                escapeHtml(label) +
                 "</span></div>" +
                 '<span class="text-foreground tracking-tight">' +
-                value +
+                escapeHtml(value) +
                 "</span>" +
                 "</div>";
             });

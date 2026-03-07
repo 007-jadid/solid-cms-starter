@@ -1,24 +1,42 @@
 const TOKEN_KEY = "cms.access-token";
 const REFRESH_KEY = "cms.refresh-token";
 
+/**
+ * Token storage using in-memory primary + sessionStorage fallback.
+ *
+ * - In-memory storage is preferred because it is not accessible via
+ *   `document.cookie` / `localStorage` in an XSS scenario.
+ * - sessionStorage is used as a fallback so tokens survive page reloads
+ *   within the same tab, but do NOT persist across browser sessions
+ *   or leak to other tabs (unlike localStorage).
+ *
+ * For maximum security, migrate to HttpOnly cookie-based auth on the backend.
+ */
+let memAccessToken: string | null = null;
+let memRefreshToken: string | null = null;
+
 export const tokenStorage = {
   setTokens(accessToken: string, refreshToken?: string | null) {
-    localStorage.setItem(TOKEN_KEY, accessToken);
+    memAccessToken = accessToken;
+    sessionStorage.setItem(TOKEN_KEY, accessToken);
     if (refreshToken) {
-      localStorage.setItem(REFRESH_KEY, refreshToken);
+      memRefreshToken = refreshToken;
+      sessionStorage.setItem(REFRESH_KEY, refreshToken);
     }
   },
   getAccessToken() {
-    return localStorage.getItem(TOKEN_KEY);
+    return memAccessToken ?? sessionStorage.getItem(TOKEN_KEY);
   },
   getRefreshToken() {
-    return localStorage.getItem(REFRESH_KEY);
+    return memRefreshToken ?? sessionStorage.getItem(REFRESH_KEY);
   },
   clearTokens() {
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.removeItem(REFRESH_KEY);
+    memAccessToken = null;
+    memRefreshToken = null;
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.removeItem(REFRESH_KEY);
   },
   hasTokens() {
-    return !!localStorage.getItem(TOKEN_KEY);
+    return !!(memAccessToken ?? sessionStorage.getItem(TOKEN_KEY));
   },
 };

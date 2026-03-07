@@ -1,13 +1,27 @@
-import { createFileRoute, useNavigate, useSearch } from "@tanstack/solid-router";
+import {
+  createFileRoute,
+  useNavigate,
+  useSearch,
+} from "@tanstack/solid-router";
 import { valibotValidator } from "@tanstack/valibot-adapter";
 import { Show } from "solid-js";
 import { createStore } from "solid-js/store";
 import * as v from "valibot";
 import { useAuth } from "~/features/context/auth";
 import { useI18n } from "~/features/context/i18n";
-import { fadeIn, scaleIn, staggerChildren } from "~/features/lib/gsap-directives";
+import {
+  fadeIn,
+  scaleIn,
+  staggerChildren,
+} from "~/features/lib/gsap-directives";
+import { isSafeRedirectUrl } from "~/features/lib/utils";
 import { Button } from "~/features/ui/components/button";
-import { Card, CardContent, CardHeader, CardTitle } from "~/features/ui/components/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "~/features/ui/components/card";
 import { Input } from "~/features/ui/components/input";
 import { Label } from "~/features/ui/components/label";
 
@@ -47,7 +61,8 @@ function RouteComponent() {
         password: form.password,
       });
       if (ok) {
-        const redirectUrl = search().redirect || "/dashboard";
+        const raw = search().redirect;
+        const redirectUrl = raw && isSafeRedirectUrl(raw) ? raw : "/dashboard";
         navigate({ to: redirectUrl });
       } else {
         setForm("error", t("login.invalidCredentials"));
@@ -60,10 +75,15 @@ function RouteComponent() {
   return (
     <div class="space-y-6" use:fadeIn>
       <div class="flex flex-col space-y-2 text-center">
-        <h1 class="text-3xl font-bold tracking-tight">{t("login.welcomeBack")}</h1>
+        <h1 class="text-3xl font-bold tracking-tight">
+          {t("login.welcomeBack")}
+        </h1>
         <p class="text-sm text-muted-foreground">{t("login.subtitle")}</p>
       </div>
-      <Card class="border-none shadow-xl ring-1 ring-border/50" use:scaleIn={{ delay: 0.15 }}>
+      <Card
+        class="border-none shadow-xl ring-1 ring-border/50"
+        use:scaleIn={{ delay: 0.15 }}
+      >
         <CardHeader>
           <CardTitle class="text-xl">{t("login.signIn")}</CardTitle>
         </CardHeader>
@@ -73,7 +93,11 @@ function RouteComponent() {
               {form.error}
             </div>
           </Show>
-          <form onSubmit={handleSubmit} class="space-y-4" use:staggerChildren={{ delay: 0.25 }}>
+          <form
+            onSubmit={handleSubmit}
+            class="space-y-4"
+            use:staggerChildren={{ delay: 0.25 }}
+          >
             <div class="space-y-2">
               <Label for="email">{t("auth.email")}</Label>
               <Input
@@ -94,13 +118,21 @@ function RouteComponent() {
                 placeholder="••••••"
               />
             </div>
-            <Button type="submit" class="w-full" disabled={form.isLoading} size="lg">
+            <Button
+              type="submit"
+              class="w-full"
+              disabled={form.isLoading}
+              size="lg"
+            >
               {form.isLoading ? t("login.signingIn") : t("auth.login")}
             </Button>
           </form>
         </CardContent>
       </Card>
-      <div class="grid grid-cols-2 gap-4 text-xs" use:fadeIn={{ delay: 0.45, y: 8 }}>
+      <div
+        class="grid grid-cols-2 gap-4 text-xs"
+        use:fadeIn={{ delay: 0.45, y: 8 }}
+      >
         <div class="rounded-md bg-muted p-2 text-center">
           <div class="font-medium">{t("login.userHint")}</div>
           <div class="text-muted-foreground">admin@demo.com</div>

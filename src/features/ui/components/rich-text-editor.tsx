@@ -17,9 +17,17 @@
  *   Insert:  Link, Image (with drag-corner resize)
  *   Clean:   Remove formatting
  */
+import DOMPurify from "dompurify";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import { createEffect, createSignal, on, onCleanup, onMount, Show } from "solid-js";
+import {
+  createEffect,
+  createSignal,
+  on,
+  onCleanup,
+  onMount,
+  Show,
+} from "solid-js";
 import { cn } from "~/features/lib/utils";
 
 // ─── Quill patches ────────────────────────────────────────────────────────────
@@ -30,7 +38,8 @@ const ImageBlot = Quill.import("formats/image") as {
   sanitize: (url: string) => string;
 };
 const _origSanitize = ImageBlot.sanitize.bind(ImageBlot);
-ImageBlot.sanitize = (url: string) => (url.startsWith("blob:") ? url : _origSanitize(url));
+ImageBlot.sanitize = (url: string) =>
+  url.startsWith("blob:") ? url : _origSanitize(url);
 
 // ─── Props ───────────────────────────────────────────────────────────────────
 
@@ -47,7 +56,10 @@ export interface RichTextEditorProps {
 // ─── Image resize overlay ─────────────────────────────────────────────────────
 
 /** Attaches a drag-corner resize overlay to every image clicked in the editor. */
-function setupImageResize(quill: Quill, onContentChange: () => void): () => void {
+function setupImageResize(
+  quill: Quill,
+  onContentChange: () => void,
+): () => void {
   // The .ql-container div (parent of .ql-editor) is our positioning anchor.
   const qlContainer = quill.root.parentElement as HTMLElement;
   qlContainer.style.position = "relative";
@@ -171,7 +183,10 @@ function setupImageResize(quill: Quill, onContentChange: () => void): () => void
   // Click anywhere else → hide overlay
   const onDocumentClick = (e: MouseEvent) => {
     if (!activeImg) return;
-    if (!(e.target instanceof HTMLImageElement) && !overlay?.contains(e.target as Node)) {
+    if (
+      !(e.target instanceof HTMLImageElement) &&
+      !overlay?.contains(e.target as Node)
+    ) {
       hideOverlay();
     }
   };
@@ -220,7 +235,12 @@ export function RichTextEditor(props: RichTextEditorProps) {
             [{ size: ["small", false, "large", "huge"] }],
             [{ color: [] }, { background: [] }],
             [{ header: 1 }, { header: 2 }, { header: 3 }],
-            [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
+            [
+              { list: "ordered" },
+              { list: "bullet" },
+              { indent: "-1" },
+              { indent: "+1" },
+            ],
             [{ align: [] }],
             ["blockquote", "code-block"],
             ["link", "image"],
@@ -252,7 +272,9 @@ export function RichTextEditor(props: RichTextEditorProps) {
                 // Apply default medium width after Quill has rendered the node
                 queueMicrotask(() => {
                   const imgs = quill!.root.querySelectorAll("img");
-                  const inserted = imgs[imgs.length - 1] as HTMLImageElement | null;
+                  const inserted = imgs[
+                    imgs.length - 1
+                  ] as HTMLImageElement | null;
                   if (inserted && !inserted.style.width) {
                     inserted.style.width = "40%";
                     inserted.style.height = "auto";
@@ -269,15 +291,19 @@ export function RichTextEditor(props: RichTextEditorProps) {
 
     // Label undo/redo buttons (no built-in SVG)
     const toolbar = quill.getModule("toolbar") as { container: HTMLElement };
-    const undoBtn = toolbar.container.querySelector(".ql-undo") as HTMLElement | null;
-    const redoBtn = toolbar.container.querySelector(".ql-redo") as HTMLElement | null;
+    const undoBtn = toolbar.container.querySelector(
+      ".ql-undo",
+    ) as HTMLElement | null;
+    const redoBtn = toolbar.container.querySelector(
+      ".ql-redo",
+    ) as HTMLElement | null;
     if (undoBtn) undoBtn.textContent = "↩";
     if (redoBtn) redoBtn.textContent = "↪";
 
-    // Set initial content
+    // Set initial content (sanitized to prevent XSS)
     if (props.value) {
       internalUpdate = true;
-      quill.root.innerHTML = props.value;
+      quill.root.innerHTML = DOMPurify.sanitize(props.value);
       internalUpdate = false;
       setCharCount(quill.getText().length - 1);
     }
@@ -307,7 +333,7 @@ export function RichTextEditor(props: RichTextEditorProps) {
       (newVal) => {
         if (!quill || quill.root.innerHTML === newVal) return;
         internalUpdate = true;
-        quill.root.innerHTML = newVal ?? "";
+        quill.root.innerHTML = DOMPurify.sanitize(newVal ?? "");
         internalUpdate = false;
         setCharCount(quill.getText().length - 1);
       },
@@ -340,7 +366,10 @@ export function RichTextEditor(props: RichTextEditorProps) {
         props.class,
       )}
     >
-      <div ref={containerRef!} style={{ "min-height": props.minHeight ?? "150px" }} />
+      <div
+        ref={containerRef!}
+        style={{ "min-height": props.minHeight ?? "150px" }}
+      />
 
       {/* ── Character count ── */}
       <Show when={props.maxLength}>

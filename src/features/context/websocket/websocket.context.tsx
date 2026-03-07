@@ -1,14 +1,26 @@
-import { createContext, createEffect, type JSX, on, onCleanup, useContext } from "solid-js";
+import {
+  createContext,
+  createEffect,
+  type JSX,
+  on,
+  onCleanup,
+  useContext,
+} from "solid-js";
 import { createStore } from "solid-js/store";
 import { useAuth } from "~/features/context/auth/auth.context";
 import type { ReconnectConfig } from "~/features/core/core.types";
 import { calculateBackoff } from "~/features/lib/backoff";
-import type { WSContextValue, WSEventHandler, WSEventMap, WSState } from "./websocket.types";
+import type {
+  WSContextValue,
+  WSEventHandler,
+  WSEventMap,
+  WSState,
+} from "./websocket.types";
 import {
   addListener,
   buildWSUrl,
-  type EventListeners,
   emit,
+  type EventListeners,
   removeListener,
 } from "./websocket.utils";
 
@@ -24,7 +36,12 @@ const defaultWSConfig = {
   url: null as string | null,
   transport: "websocket" as const,
   autoConnect: true,
-  reconnect: { enabled: true, maxAttempts: 10, baseDelay: 1000, maxDelay: 30_000 },
+  reconnect: {
+    enabled: true,
+    maxAttempts: 10,
+    baseDelay: 1000,
+    maxDelay: 30_000,
+  },
   showStatusIndicator: true,
 };
 
@@ -54,7 +71,8 @@ export function WebSocketProvider(props: {
   let reconnectTimer: ReturnType<typeof setTimeout> | null = null;
   let intentionalClose = false;
 
-  const getUrl = () => config.url ?? (import.meta.env.VITE_WS_URL as string) ?? "";
+  const getUrl = () =>
+    config.url ?? (import.meta.env.VITE_WS_URL as string) ?? "";
   const getToken = () => auth.state.tokens.accessToken;
 
   // ── Native WebSocket ──────────────────────────────────────────────────
@@ -64,9 +82,14 @@ export function WebSocketProvider(props: {
     if (!url) return;
 
     setState("status", "connecting");
-    ws = new WebSocket(buildWSUrl(url, getToken()));
+    ws = new WebSocket(buildWSUrl(url));
 
     ws.onopen = () => {
+      // Send auth token as first message instead of via URL query param (avoids log/proxy leaking)
+      const token = getToken();
+      if (token && ws) {
+        ws.send(JSON.stringify({ event: "auth", data: { token } }));
+      }
       setState({
         status: "connected",
         reconnectAttempts: 0,
@@ -178,7 +201,10 @@ export function WebSocketProvider(props: {
   // ── Reconnection ──────────────────────────────────────────────────────
 
   function scheduleReconnect() {
-    if (!config.reconnect.enabled || state.reconnectAttempts >= config.reconnect.maxAttempts) {
+    if (
+      !config.reconnect.enabled ||
+      state.reconnectAttempts >= config.reconnect.maxAttempts
+    ) {
       setState("status", "error");
       return;
     }
@@ -240,7 +266,10 @@ export function WebSocketProvider(props: {
     return addListener(listeners, event, handler as WSEventHandler);
   };
 
-  const offEvent = <K extends string>(event: K, handler: WSEventHandler<WSEventMap[K]>) => {
+  const offEvent = <K extends string>(
+    event: K,
+    handler: WSEventHandler<WSEventMap[K]>,
+  ) => {
     removeListener(listeners, event, handler as WSEventHandler);
   };
 
@@ -280,12 +309,17 @@ export function WebSocketProvider(props: {
     sendRaw,
   };
 
-  return <WebSocketContext.Provider value={value}>{props.children}</WebSocketContext.Provider>;
+  return (
+    <WebSocketContext.Provider value={value}>
+      {props.children}
+    </WebSocketContext.Provider>
+  );
 }
 
 export function useWebSocket(): WSContextValue {
   const ctx = useContext(WebSocketContext);
-  if (!ctx) throw new Error("useWebSocket must be used within a WebSocketProvider");
+  if (!ctx)
+    throw new Error("useWebSocket must be used within a WebSocketProvider");
   return ctx;
 }
 

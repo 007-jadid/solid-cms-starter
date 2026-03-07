@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="CMS Boilerplate - A production-ready SolidJS admin panel" />
+  <link rel="apple-touch-icon" href="/logo192.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>CMS Boilerplate</title>
+  <script>
+    (function () { try { var s = localStorage.getItem('cms.settings.v2'); var t = 'system', v = 'default'; if (s) { var p = JSON.parse(s); if (p.theme) t = p.theme; if (p.themeVariant) v = p.themeVariant } var r = t === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : t; document.documentElement.classList.add(r); if (v !== 'default') document.documentElement.classList.add('theme-' + v) } catch (e) { } })()
+  </script>
+  <style>
+    /* Variables use oklch to match app.css exactly — avoids hsl(oklch(...)) invalid CSS when bundle loads */
+    :root {
+      --background: oklch(0.985 0.002 90);
+      --foreground: oklch(0.145 0.015 260);
+      --primary: oklch(0.45 0.18 280);
+    }
+
+    .dark {
+      --background: oklch(0.13 0.015 280);
+      --foreground: oklch(0.93 0.01 90);
+      --primary: oklch(0.72 0.16 280);
+    }
+
+    /* Claude variant — matches app.css .theme-claude */
+    .theme-claude {
+      --background: oklch(0.960 0.010 80);
+      --foreground: oklch(0.192 0.010 89);
+      --primary: oklch(0.674 0.132 39);
+    }
+
+    .dark.theme-claude {
+      --background: oklch(0.268 0.004 107);
+      --foreground: oklch(0.955 0.000 263);
+      --primary: oklch(0.674 0.132 39);
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    #initial-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--background);
+    }
+
+    /* Indeterminate top progress bar */
+    .loader-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      overflow: hidden;
+      background: color-mix(in oklch, var(--primary) 12%, transparent);
+    }
+
+    .loader-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 40%;
+      background: linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%);
+      animation: loader-sweep 1.6s ease-in-out infinite;
+    }
+
+    @keyframes loader-sweep {
+      0%   { left: -40%; }
+      100% { left: 100%; }
+    }
+
+    /* Conic gradient ring spinner */
+    .loader-ring {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        var(--primary) 0%,
+        color-mix(in oklch, var(--primary) 5%, transparent) 100%
+      );
+      animation: loader-spin 0.85s linear infinite;
+      position: relative;
+    }
+
+    .loader-ring::before {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border-radius: 50%;
+      background: var(--background);
+    }
+
+    @keyframes loader-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Label */
+    .loader-label {
+      margin-top: 18px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--foreground);
+      opacity: 0.4;
+      animation: loader-pulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes loader-pulse {
+      0%, 100% { opacity: 0.35; }
+      50%       { opacity: 0.65; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="initial-loader">
+    <div class="loader-bar"></div>
+    <div class="loader-ring"></div>
+    <div class="loader-label">Loading</div>
+  </div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
